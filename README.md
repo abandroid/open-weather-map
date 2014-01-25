@@ -4,6 +4,8 @@ Endroid OpenWeatherMap
 *By [endroid](http://endroid.nl/)*
 
 [![Build Status](https://secure.travis-ci.org/endroid/OpenWeatherMap.png)](http://travis-ci.org/endroid/OpenWeatherMap)
+[![Latest Stable Version](https://poser.pugx.org/endroid/openweathermap/v/stable.png)](https://packagist.org/packages/endroid/openweathermap)
+[![Total Downloads](https://poser.pugx.org/endroid/openweathermap/downloads.png)](https://packagist.org/packages/endroid/openweathermap)
 
 OpenWeatherMap helps making requests to the OpenWeatherMap API, without having to bother too much about passing your API
 key and building requests. The only thing you need is the API key (APPID) which you can find after [registration on the
