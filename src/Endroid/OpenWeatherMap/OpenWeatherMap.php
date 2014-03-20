@@ -91,9 +91,43 @@ class OpenWeatherMap
      *
      * @param $city
      * @param array $parameters
-     * @return mixed
+     *
+     * @return \stdClass
      */
     public function getWeather($city, $parameters = array())
+    {
+        return $this->doGenericQuery("weather", $city, $parameters);
+    }
+
+    /**
+     * Returns the forecast for a city
+     *
+     * @param $city
+     * @param $days
+     * @param array $parameters
+     *
+     * @return \stdClass
+     */
+    public function getForecast($city, $days = null, $parameters = array())
+    {
+        if($days)
+        {
+            if(!empty($parameters))
+                $parameters['cnt'] = $days;
+            else
+                $parameters = array('cnt' => $days);
+        }
+
+        return $this->doGenericQuery("forecast/daily", $city, $parameters);
+    }
+
+    /**
+     * @param $query
+     * @param $city
+     * @param array $parameters
+     * @return \stdClass
+     */
+    private function doGenericQuery($query, $city, $parameters = array())
     {
         if (is_numeric($city)) {
             $parameters['id'] = $city;
@@ -101,7 +135,7 @@ class OpenWeatherMap
             $parameters['q'] = $city;
         }
 
-        $response = $this->query('weather', $parameters);
+        $response = $this->query($query, $parameters);
 
         return json_decode($response->getContent());
     }
