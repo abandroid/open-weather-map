@@ -11,6 +11,8 @@ OpenWeatherMap helps making requests to the OpenWeatherMap API, without having t
 key and building requests. The only thing you need is the API key (APPID) which you can find after [registration on the
 website](http://openweathermap.org/login).
 
+More info about custom parameters in the official API docs: http://bugs.openweathermap.org/projects/api/wiki/Api_2_5
+
 ```php
 <?php
 
@@ -22,6 +24,9 @@ $weather = $openWeatherMap->getWeather('Breda,nl');
 // Or retrieve the weather using the generic query method
 $response = $openWeatherMap->query('weather', array('q' => 'Breda,nl'));
 $weather = json_decode($response->getContent());
+
+// You can also retrieve a N days forecast
+$forecast = $openWeatherMap->getForecast('Breda,nl', 7);
 
 ```
 
