@@ -16,17 +16,19 @@ More info about custom parameters in the official API docs: http://bugs.openweat
 ```php
 <?php
 
-$openWeatherMap = new Endroid\OpenWeatherMap\OpenWeatherMap($apiKey);
+use Endroid\OpenWeatherMap\Client;
+
+$client = new Client($apiKey);
 
 // Retrieve the current weather for Breda
-$weather = $openWeatherMap->getWeather('Breda,nl');
+$weather = $client->getWeather('Breda,nl');
 
 // Or retrieve the weather using the generic query method
-$response = $openWeatherMap->query('weather', array('q' => 'Breda,nl'));
+$response = $client->query('weather', array('q' => 'Breda,nl'));
 $weather = json_decode($response->getContent());
 
 // You can also retrieve a N days forecast
-$forecast = $openWeatherMap->getForecast('Breda,nl', 7);
+$forecast = $client->getForecast('Breda,nl', 7);
 
 ```
 
@@ -34,6 +36,10 @@ $forecast = $openWeatherMap->getForecast('Breda,nl', 7);
 
 You can use [`EndroidOpenWeatherMapBundle`](https://github.com/endroid/EndroidOpenWeatherMapBundle) to enable this
 service in your Symfony application or to expose the OpenWeatherMap API through your own domain.
+
+## Versioning
+
+Semantic versioning ([semver](http://semver.org/)) is applied as much as possible.
 
 ## License
 

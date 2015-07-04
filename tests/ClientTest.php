@@ -9,9 +9,9 @@
 
 namespace Endroid\Tests\OpenWeatherMap;
 
-use Endroid\OpenWeatherMap\OpenWeatherMap;
+use PHPUnit_Framework_TestCase;
 
-class OpenWeatherMapTest extends \PHPUnit_Framework_TestCase
+class ClientTest extends PHPUnit_Framework_TestCase
 {
     public function testNoTestsYet()
     {

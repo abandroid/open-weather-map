@@ -9,10 +9,10 @@
 
 namespace Endroid\OpenWeatherMap;
 
-use Buzz\Browser;
-use Buzz\Client\Curl;
+use GuzzleHttp\Client as GuzzleClient;
+use stdClass;
 
-class OpenWeatherMap
+class Client
 {
     /**
      * @var string
@@ -30,7 +30,12 @@ class OpenWeatherMap
     protected $units = 'metric';
 
     /**
-     * Class constructor
+     * @var GuzzleClient
+     */
+    protected $guzzleClient;
+
+    /**
+     * Class constructor.
      *
      * @param $apiKey
      * @param null $apiUrl
@@ -48,7 +53,7 @@ class OpenWeatherMap
             $this->units = $units;
         }
 
-        $this->browser = new Browser(new Curl());
+        $this->guzzleClient = new GuzzleClient();
     }
 
     /**
@@ -56,7 +61,8 @@ class OpenWeatherMap
      *
      * @param $name
      * @param array $parameters
-     * @return \Buzz\Message\Response
+     *
+     * @return stdClass
      */
     public function query($name, $parameters = array())
     {
@@ -80,52 +86,53 @@ class OpenWeatherMap
         }
         $baseUrl .= '?'.implode('&', $requestQueryParts);
 
-        // Perform cURL request
-        $response = $this->browser->get($baseUrl);
+        $response = $this->guzzleClient->get($baseUrl);
+        $response = json_decode($response->getBody()->getContents());
 
         return $response;
     }
 
     /**
-     * Returns the current weather for a city
+     * Returns the current weather for a city.
      *
      * @param $city
      * @param array $parameters
      *
-     * @return \stdClass
+     * @return stdClass
      */
     public function getWeather($city, $parameters = array())
     {
-        return $this->doGenericQuery("weather", $city, $parameters);
+        return $this->doGenericQuery('weather', $city, $parameters);
     }
 
     /**
-     * Returns the forecast for a city
+     * Returns the forecast for a city.
      *
      * @param $city
      * @param $days
      * @param array $parameters
      *
-     * @return \stdClass
+     * @return stdClass
      */
     public function getForecast($city, $days = null, $parameters = array())
     {
-        if($days)
-        {
-            if(!empty($parameters))
+        if ($days) {
+            if (!empty($parameters)) {
                 $parameters['cnt'] = $days;
-            else
+            } else {
                 $parameters = array('cnt' => $days);
+            }
         }
 
-        return $this->doGenericQuery("forecast/daily", $city, $parameters);
+        return $this->doGenericQuery('forecast/daily', $city, $parameters);
     }
 
     /**
      * @param $query
      * @param $city
      * @param array $parameters
-     * @return \stdClass
+     *
+     * @return stdClass
      */
     private function doGenericQuery($query, $city, $parameters = array())
     {
@@ -137,6 +144,6 @@ class OpenWeatherMap
 
         $response = $this->query($query, $parameters);
 
-        return json_decode($response->getContent());
+        return $response;
     }
 }
