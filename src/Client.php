@@ -30,6 +30,11 @@ class Client
     protected $units = 'metric';
 
     /**
+     * @var string
+     */
+    protected $lang = 'fr';
+
+    /**
      * @var GuzzleClient
      */
     protected $guzzleClient;
@@ -41,7 +46,7 @@ class Client
      * @param null $apiUrl
      * @param null $units
      */
-    public function __construct($apiKey, $apiUrl = null, $units = null)
+    public function __construct($apiKey, $apiUrl = null, $units = null, $lang = null)
     {
         $this->apiKey = $apiKey;
 
@@ -51,6 +56,10 @@ class Client
 
         if ($units) {
             $this->units = $units;
+        }
+
+        if ($lang) {
+            $this->lang = $lang;
         }
 
         $this->guzzleClient = new GuzzleClient();
@@ -74,6 +83,10 @@ class Client
         // Pass the desired units
         if (!isset($parameters['units'])) {
             $parameters['units'] = $this->units;
+        }
+
+        if (!isset($parameters['lang'])) {
+            $parameters['lang'] = $this->lang;
         }
 
         // Part 2 : base url
