@@ -32,7 +32,7 @@ class Client
     /**
      * @var string
      */
-    protected $lang = 'fr';
+    protected $lang = 'en';
 
     /**
      * @var GuzzleClient
@@ -42,9 +42,10 @@ class Client
     /**
      * Class constructor.
      *
-     * @param $apiKey
-     * @param null $apiUrl
-     * @param null $units
+     * @param string $apiKey
+     * @param string $apiUrl
+     * @param string $units
+     * @param string $lang
      */
     public function __construct($apiKey, $apiUrl = null, $units = null, $lang = null)
     {
@@ -75,12 +76,10 @@ class Client
      */
     public function query($name, $parameters = array())
     {
-        // Pass the API key
         if (!isset($parameters['APPID'])) {
             $parameters['APPID'] = $this->apiKey;
         }
 
-        // Pass the desired units
         if (!isset($parameters['units'])) {
             $parameters['units'] = $this->units;
         }
@@ -89,10 +88,8 @@ class Client
             $parameters['lang'] = $this->lang;
         }
 
-        // Part 2 : base url
         $baseUrl = $this->apiUrl.$name;
 
-        // The call has to be made against the base url + query string
         $requestQueryParts = array();
         foreach ($parameters as $key => $value) {
             $requestQueryParts[] = $key.'='.rawurlencode($value);
