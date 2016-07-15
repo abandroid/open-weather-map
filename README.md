@@ -3,9 +3,11 @@ Endroid OpenWeatherMap
 
 *By [endroid](http://endroid.nl/)*
 
+[![Latest Stable Version](http://img.shields.io/packagist/v/endroid/openweathermap.svg)](https://packagist.org/packages/endroid/openweathermap)
 [![Build Status](https://secure.travis-ci.org/endroid/OpenWeatherMap.png)](http://travis-ci.org/endroid/OpenWeatherMap)
-[![Latest Stable Version](https://poser.pugx.org/endroid/openweathermap/v/stable.png)](https://packagist.org/packages/endroid/openweathermap)
-[![Total Downloads](https://poser.pugx.org/endroid/openweathermap/downloads.png)](https://packagist.org/packages/endroid/openweathermap)
+[![Total Downloads](http://img.shields.io/packagist/dt/endroid/openweathermap.svg)](https://packagist.org/packages/endroid/openweathermap)
+[![Monthly Downloads](http://img.shields.io/packagist/dm/endroid/openweathermap.svg)](https://packagist.org/packages/endroid/openweathermap)
+[![License](http://img.shields.io/packagist/l/endroid/openweathermap.svg)](https://packagist.org/packages/endroid/openweathermap)
 
 OpenWeatherMap helps making requests to the OpenWeatherMap API, without having to bother too much about passing your API
 key and building requests. The only thing you need is the API key (APPID) which you can find after [registration on the
@@ -39,9 +41,9 @@ service in your Symfony application or to expose the OpenWeatherMap API through 
 
 ## Versioning
 
-Version numbers follow the MAJOR.MINOR.PATCH scheme. Backwards compatible
-changes will be kept to a minimum but be aware that these can occur. Lock
-your dependencies for production and test your code when upgrading.
+Version numbers follow the MAJOR.MINOR.PATCH scheme. Backwards compatibility
+breaking changes will be kept to a minimum but be aware that these can occur.
+Lock your dependencies for production and test your code when upgrading.
 
 ## License
 
