@@ -26,7 +26,7 @@ $client = new Client($apiKey);
 $weather = $client->getWeather('Breda,nl');
 
 // Or retrieve the weather using the generic query method
-$response = $client->query('weather', array('q' => 'Breda,nl'));
+$response = $client->query('weather', ['q' => 'Breda,nl']);
 $weather = json_decode($response->getContent());
 
 // You can also retrieve a N days forecast

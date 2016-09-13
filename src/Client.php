@@ -69,12 +69,12 @@ class Client
     /**
      * Performs a query to the OpenWeatherMap API.
      *
-     * @param $name
+     * @param string $name
      * @param array $parameters
      *
      * @return stdClass
      */
-    public function query($name, $parameters = array())
+    public function query($name, $parameters = [])
     {
         if (!isset($parameters['APPID'])) {
             $parameters['APPID'] = $this->apiKey;
@@ -90,7 +90,7 @@ class Client
 
         $baseUrl = $this->apiUrl.$name;
 
-        $requestQueryParts = array();
+        $requestQueryParts = [];
         foreach ($parameters as $key => $value) {
             $requestQueryParts[] = $key.'='.rawurlencode($value);
         }
@@ -105,12 +105,12 @@ class Client
     /**
      * Returns the current weather for a city.
      *
-     * @param $city
+     * @param string $city
      * @param array $parameters
      *
      * @return stdClass
      */
-    public function getWeather($city, $parameters = array())
+    public function getWeather($city, $parameters = [])
     {
         return $this->doGenericQuery('weather', $city, $parameters);
     }
@@ -118,19 +118,19 @@ class Client
     /**
      * Returns the forecast for a city.
      *
-     * @param $city
-     * @param $days
+     * @param string $city
+     * @param int $days
      * @param array $parameters
      *
      * @return stdClass
      */
-    public function getForecast($city, $days = null, $parameters = array())
+    public function getForecast($city, $days = null, $parameters = [])
     {
         if ($days) {
             if (!empty($parameters)) {
                 $parameters['cnt'] = $days;
             } else {
-                $parameters = array('cnt' => $days);
+                $parameters = ['cnt' => $days];
             }
         }
 
@@ -138,13 +138,13 @@ class Client
     }
 
     /**
-     * @param $query
-     * @param $city
+     * @param string $query
+     * @param string $city
      * @param array $parameters
      *
      * @return stdClass
      */
-    private function doGenericQuery($query, $city, $parameters = array())
+    private function doGenericQuery($query, $city, $parameters = [])
     {
         if (is_numeric($city)) {
             $parameters['id'] = $city;
