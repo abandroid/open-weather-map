@@ -1,5 +1,3 @@
-<font color="red">**THIS PACKAGE IS ABANDONED AND WILL BE REMOVED ON 01-07-2016**</font>
-
 Endroid OpenWeatherMap
 ======================
 
