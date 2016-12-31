@@ -1,3 +1,5 @@
+**THIS PACKAGE IS ABANDONED AND WILL BE REMOVED ON 01-07-2016**
+
 Endroid OpenWeatherMap
 ======================
 
