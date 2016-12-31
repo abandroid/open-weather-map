@@ -16,10 +16,9 @@ website](http://openweathermap.org/login).
 More info about custom parameters in the official API docs: http://bugs.openweathermap.org/projects/api/wiki/Api_2_5
 
 ```php
-<?php
-
 use Endroid\OpenWeatherMap\Client;
 
+$apiKey = '...';
 $client = new Client($apiKey);
 
 // Retrieve the current weather for Breda
@@ -34,10 +33,38 @@ $forecast = $client->getForecast('Breda,nl', 7);
 
 ```
 
-## Symfony
+## Symfony integration
 
-You can use [`EndroidOpenWeatherMapBundle`](https://github.com/endroid/EndroidOpenWeatherMapBundle) to enable this
-service in your Symfony application or to expose the OpenWeatherMap API through your own domain.
+Register the Symfony bundle in the kernel.
+
+```php
+// app/AppKernel.php
+
+public function registerBundles()
+{
+    $bundles = [
+        // ...
+        new Endroid\OpenWeatherMap\Bundle\EndroidOpenWeatherMapBundle(),
+    ];
+}
+
+```
+
+The default parameters can be overridden via the configuration.
+
+```yaml
+endroid_open_weather_map:
+    api_key: '...'
+    units: 'metric'
+
+```
+
+Now you can retrieve the client as follows.
+
+```php
+$client = $this->get('endroid.open_weather_map.client');
+
+```
 
 ## Versioning
 

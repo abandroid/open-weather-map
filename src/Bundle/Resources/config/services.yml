@@ -1,0 +1,3 @@
+services:
+    endroid.open_weather_map.client:
+        class: Endroid\OpenWeatherMap\Client
