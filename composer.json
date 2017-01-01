@@ -24,6 +24,11 @@
             "Endroid\\OpenWeatherMap\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Endroid\\OpenWeatherMap\\Tests\\": "tests/"
+        }
+    },
     "config": {
         "bin-dir": "bin"
     },
